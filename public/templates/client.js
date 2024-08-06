@@ -1,23 +1,25 @@
 const socket = io();
 
 const input = document.getElementById("input")
-const sendButton = document.getElementById("sendButton")
+const messages = document.getElementById("messages")
 const chatContainer = document.getElementById("chat-container")
 
-sendButton.addEventListener("click", (e) => {
+messages.addEventListener("submit", (e) => {
   e.preventDefault()
   socket.emit("client-message", input.value)
-  input.value = ""
-
-  
-})
-
-socket.on("server-message", (msg) => {
   const bubble = document.createElement("li")
   bubble.classList.add("bubble")
   bubble.classList.add("sent")
+  bubble.textContent = input.value
+  chatContainer.appendChild(bubble)
+  input.value = ""
+})
+
+socket.on("received-message", (msg) => {
+  const bubble = document.createElement("li")
+  bubble.classList.add("bubble")
+  bubble.classList.add("received")
   bubble.textContent = msg
   chatContainer.appendChild(bubble)
   })
-
 

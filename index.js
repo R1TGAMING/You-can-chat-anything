@@ -10,6 +10,14 @@ app.get( '/', (req, res) => {
   res.sendFile(__dirname + '/public/templates/index.html');
 })
 
+io.on("connection", (socket) => {
+  socket.on("client-message", (msg) => {
+    socket.broadcast.emit("received-message", msg)
+  })
+  
+
+  console.log(socket.id)
+})
 
 
 app.get( '/client.js', (req, res) => {
