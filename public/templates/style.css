@@ -1,0 +1,28 @@
+    .chat-container {
+      max-width: 600px;
+      margin: 20px 0px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    .bubble {
+      padding: 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      width : 100px;
+      list-style-type: none;
+      overflow-y: auto;
+    }
+    .bubble.sent {
+      background-color: #007bff;
+      color: white;
+      margin-left: auto;
+      align-items: flex-end;
+    }
+    .bubble.received {
+      background-color: #f1f1f1;
+      color: black;
+      align-self: flex-end;
+      text-align: left;
+      margin-right : auto;
+    }

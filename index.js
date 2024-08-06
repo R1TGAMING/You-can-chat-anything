@@ -1,18 +1,27 @@
 const app = require('express')();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const { createServer } = require('http');
+const { Server } = require("socket.io");
 
+const server = createServer(app);
+const io = new Server(server);
 
 
 app.get( '/', (req, res) => {
   res.sendFile(__dirname + '/public/templates/index.html');
 })
 
-io.on('connection', (socket) => {
-  socket.on('chat-client', (chat) => {
-    socket.emit("chat-server", chat)
-  })
+
+
+app.get( '/client.js', (req, res) => {
+  res.sendFile(__dirname + '/public/templates/client.js');
 })
+
+app.get( '/style.css', (req, res) => {
+  res.sendFile(__dirname + '/public/templates/style.css');
+})
+
+
+
 
 
 server.listen(3000, () => {
