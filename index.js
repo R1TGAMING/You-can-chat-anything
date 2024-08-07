@@ -11,8 +11,8 @@ app.get( '/', (req, res) => {
 })
 
 io.on("connection", (socket) => {
-  socket.on("client-message", (msg) => {
-    socket.broadcast.emit("received-message", msg)
+  socket.on("client-message", (msg, dates) => {
+    socket.broadcast.emit("received-message", msg, dates);
   })
   
 
