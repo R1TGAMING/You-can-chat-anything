@@ -57,3 +57,23 @@ socket.on("received-message", (msg, dates, time) => {
   chatContainer.scrollTop = chatContainer.scrollHeight
   })
 
+socket.on("previous-message", (msg, dates, time) => {
+  const bubble = document.createElement("li")
+  const date = document.createElement("p")
+
+  bubble.classList.add("bubble")
+  bubble.classList.add("received")
+  bubble.textContent = msg
+  chatContainer.appendChild(bubble)
+  
+  
+  date.classList.add("date")
+  date.classList.add("text-start")
+  date.classList.add("text-sm-start")
+  date.innerHTML = dates + ' ' + weekDay[time]
+  chatContainer.appendChild(date)
+  
+  chatContainer.scrollTop = chatContainer.scrollHeight
+  
+  
+})
